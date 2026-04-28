@@ -15,7 +15,7 @@ public class CardDisplay : MonoBehaviour
     public TextMeshPro descriptionText;                    //설명 텍스트
 
     //카드 상태
-    private bool isDragging = false;
+    public bool isDragging = false;
     private Vector3 originalPosiiton;              //드래그 전 원본 위치
 
     //레이어 마스크
@@ -72,6 +72,12 @@ public class CardDisplay : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (CardManager.Instance.playerStats == null || CardManager.Instance.playerStats.currentMana < cardData.manaCost)
+        {
+            Debug.Log($"마나가 부족합니다. (필요 : {cardData.manaCost} , 현재 : {CardManager.Instance.playerStats.currentMana}");
+            transform.position = originalPosiiton;
+            return;
+        }
         isDragging = false;
 
         //레이캐스트로 타겟 감지
@@ -122,15 +128,29 @@ public class CardDisplay : MonoBehaviour
                 }
             }
         }
+        else if (CardManager.Instance !=null)
+        {
+            float distToDiscard = Vector3.Distance(transform.position, CardManager.Instance.discardPosition.position);
+            if (distToDiscard <2.0f)
+            {
+                CardManager.Instance.DiscardCard(cardIndex);
+                return;
+            }
+        }
 
         //카드를 사용하지 않으면 원래 위치로 되돌리기
-        if(!cardUsed)
+        if (!cardUsed)
         {
             transform.position = originalPosiiton;
+            CardManager.Instance.ArrangeHand();
         }
         else
         {
-            Destroy(gameObject);
+            if (CardManager.Instance != null)
+                CardManager.Instance.DiscardCard(cardIndex);
+
+            CardManager.Instance.playerStats.UseMana(cardData.manaCost);
+            Debug.Log($"마나를 {cardData.manaCost} 사용 했습니다.");
         }
     }
 }
