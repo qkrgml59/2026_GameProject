@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "NewCard", menuName = "Card/CardData")]
 public class CardData : ScriptableObject
@@ -12,11 +14,24 @@ public class CardData : ScriptableObject
     }
 
     public string cardName;                       //카드 이름
-    public string gdescription;                   //카드 설명
+    public string description;                   //카드 설명
     public Sprite artwork;                        //카드 이미지
     public int manaCost;                          //마나 비율
     public int effectAmount;                      //효과 값 (공격력)
     public CardType cardType;                     //카드 타입
+
+    //추가 효과 리스트
+    public List<AdditionalEffect> additionalEffects = new List<AdditionalEffect>();
+
+    public  enum AdditionalEffectType
+    {
+        None,
+        DrawCard,
+        DiscardCard,
+        GainMana,
+        ReduceEnemyMana,
+        ReduceCardCost
+    }
 
     public Color GetCardColor()
     {
@@ -38,5 +53,19 @@ public class CardData : ScriptableObject
                 return Color.white;
 
         }
+    }
+
+    public string GetAdditionalEffectDescription()
+    {
+        if (additionalEffects.Count == 0)
+            return "";
+
+        string result = "\n";
+
+        foreach (var effect in additionalEffects)
+        {
+            result += effect.GetDescription() + "\n";
+        }
+        return result; 
     }
 }

@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fadb1255b732d1748acdac7589cfd2c3, type: 3}
   m_Name: Card_004
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: "\uACF5\uACA9"
-  gdescription: "\uD070 \uACF5\uACA9\uC744 \uD55C\uB2E4"
+  cardName: "\uCE74\uB4DC \uD68D\uB4DD"
+  description: "\uCE74\uB4DC \uD558\uB098 \uB4DC\uB85C\uC6B0 \uD55C\uB2E4"
   artwork: {fileID: 21300000, guid: c0c621637e6ca054cb6f00c56255ade7, type: 3}
-  manaCost: 3
-  effectAmount: 60
-  cardType: 0
+  manaCost: 0
+  effectAmount: 1
+  cardType: 1
+  additionalEffects:
+  - effectType: 1
+    effectAmount: 1

@@ -153,7 +153,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 42490575379488e4e935e14ddfb0c8a2, type: 2}
   - {fileID: 11400000, guid: 75c6b9a6a51a6884d895fe95b2a198e3, type: 2}
   - {fileID: 11400000, guid: 6cc7b1be02f65eb4babb911dbe6206b2, type: 2}
-  - {fileID: 11400000, guid: a8b1ca658ad025140b41255a086272d6, type: 2}
+  - {fileID: 11400000, guid: 6cc7b1be02f65eb4babb911dbe6206b2, type: 2}
   - {fileID: 11400000, guid: a8b1ca658ad025140b41255a086272d6, type: 2}
   - {fileID: 11400000, guid: a8b1ca658ad025140b41255a086272d6, type: 2}
   - {fileID: 11400000, guid: a8b1ca658ad025140b41255a086272d6, type: 2}
@@ -165,6 +165,7 @@ MonoBehaviour:
   discardPosition: {fileID: 1011818442}
   cardObjects: []
   playerStats: {fileID: 1702587291}
+  EnemyStats: {fileID: 0}
 --- !u!4 &91030145
 Transform:
   m_ObjectHideFlags: 0
